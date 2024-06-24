@@ -1,0 +1,2267 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Online Bookstore API",
+        "description": "Online Bookstore Management System",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Books List",
+                "operationId": "9017a3fa89d6636329067c858b27a6fa",
+                "parameters": [
+                    {
+                        "name": "Title",
+                        "in": "query",
+                        "description": "Filter by Title",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "Filter by author",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "publisher",
+                        "in": "query",
+                        "description": "Filter by publisher",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "year_released",
+                        "in": "query",
+                        "description": "Filter by year_released",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "genre",
+                        "in": "query",
+                        "description": "Filter by genre",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "Burning Heat"
+                                                    },
+                                                    "author": {
+                                                        "type": "string",
+                                                        "example": "Akiyoshi Rikako"
+                                                    },
+                                                    "publisher": {
+                                                        "type": "string",
+                                                        "example": "Elexmedia"
+                                                    },
+                                                    "year_released": {
+                                                        "type": "string",
+                                                        "example": "2021"
+                                                    },
+                                                    "genre": {
+                                                        "type": "string",
+                                                        "example": "thriller"
+                                                    },
+                                                    "price": {
+                                                        "type": "integer",
+                                                        "example": "120000"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Books Store",
+                "operationId": "72f82e1cd6f08112323f87053277ca99",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "author": {
+                                                "type": "string"
+                                            },
+                                            "publisher": {
+                                                "type": "string"
+                                            },
+                                            "year_released": {
+                                                "type": "string"
+                                            },
+                                            "genre": {
+                                                "type": "string"
+                                            },
+                                            "price": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Burning Heat",
+                                    "author": "Akiyoshi Rikako",
+                                    "publisher": "Elexmedia",
+                                    "year_released": "2021",
+                                    "genre": "thriller",
+                                    "price": 120000
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Burning Heat"
+                                                },
+                                                "author": {
+                                                    "type": "string",
+                                                    "example": "Akiyoshi Rikako"
+                                                },
+                                                "publisher": {
+                                                    "type": "string",
+                                                    "example": "Elexmedia"
+                                                },
+                                                "year_released": {
+                                                    "type": "string",
+                                                    "example": "2021"
+                                                },
+                                                "genre": {
+                                                    "type": "string",
+                                                    "example": "thriller"
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": "120000"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/books/{book}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Books Detail",
+                "operationId": "c977385c32095dec31075ca1f77c3cd7",
+                "parameters": [
+                    {
+                        "name": "book",
+                        "in": "path",
+                        "description": "Book Id / Unique Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string|integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Burning Heat"
+                                                },
+                                                "author": {
+                                                    "type": "string",
+                                                    "example": "Akiyoshi Rikako"
+                                                },
+                                                "publisher": {
+                                                    "type": "string",
+                                                    "example": "Elexmedia"
+                                                },
+                                                "year_released": {
+                                                    "type": "string",
+                                                    "example": "2021"
+                                                },
+                                                "genre": {
+                                                    "type": "string",
+                                                    "example": "thriller"
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": "120000"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Books Delete",
+                "operationId": "5bf2d40ecbd2142dabcca0ec2b075369",
+                "parameters": [
+                    {
+                        "name": "book",
+                        "in": "path",
+                        "description": "Book Id / Unique Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string|integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Books Update",
+                "operationId": "c1283d49608aef49d8389c1f31b8bdf4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Book ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "author": {
+                                                "type": "string"
+                                            },
+                                            "publisher": {
+                                                "type": "string"
+                                            },
+                                            "year_released": {
+                                                "type": "string"
+                                            },
+                                            "genre": {
+                                                "type": "string"
+                                            },
+                                            "price": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Burning Heat",
+                                    "author": "Akiyoshi Rikako",
+                                    "publisher": "Elexmedia",
+                                    "year_released": "2021",
+                                    "genre": "thriller",
+                                    "price": 120000
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Burning Heat"
+                                                },
+                                                "author": {
+                                                    "type": "string",
+                                                    "example": "Akiyoshi Rikako"
+                                                },
+                                                "publisher": {
+                                                    "type": "string",
+                                                    "example": "Elexmedia"
+                                                },
+                                                "year_released": {
+                                                    "type": "string",
+                                                    "example": "2021"
+                                                },
+                                                "genre": {
+                                                    "type": "string",
+                                                    "example": "thriller"
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": "120000"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/inventory": {
+            "get": {
+                "tags": [
+                    "Inventory"
+                ],
+                "summary": "Inventory List",
+                "operationId": "c8f96496342baec381c44a880ef4510b",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "book": {
+                                                        "properties": {
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Burning Heat"
+                                                            },
+                                                            "author": {
+                                                                "type": "string",
+                                                                "example": "Akiyoshi Rikako"
+                                                            },
+                                                            "publisher": {
+                                                                "type": "string",
+                                                                "example": "Elexmedia"
+                                                            },
+                                                            "year_released": {
+                                                                "type": "string",
+                                                                "example": "2021"
+                                                            },
+                                                            "genre": {
+                                                                "type": "string",
+                                                                "example": "thriller"
+                                                            },
+                                                            "price": {
+                                                                "type": "integer",
+                                                                "example": "120000"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "Stock": {
+                                                        "type": "integer",
+                                                        "example": 10
+                                                    },
+                                                    "is_available": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Inventory"
+                ],
+                "summary": "Inventory Store",
+                "operationId": "92df36cfb81355e2d905b7d71d541f42",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "book_id": {
+                                                "type": "integer"
+                                            },
+                                            "stock": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "book_id": 1,
+                                    "stock": 10
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "book": {
+                                                    "properties": {
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Burning Heat"
+                                                        },
+                                                        "author": {
+                                                            "type": "string",
+                                                            "example": "Akiyoshi Rikako"
+                                                        },
+                                                        "publisher": {
+                                                            "type": "string",
+                                                            "example": "Elexmedia"
+                                                        },
+                                                        "year_released": {
+                                                            "type": "string",
+                                                            "example": "2021"
+                                                        },
+                                                        "genre": {
+                                                            "type": "string",
+                                                            "example": "thriller"
+                                                        },
+                                                        "price": {
+                                                            "type": "integer",
+                                                            "example": "120000"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "Stock": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "is_available": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/inventory/{inventory}": {
+            "get": {
+                "tags": [
+                    "Inventory"
+                ],
+                "summary": "Inventory Detail",
+                "operationId": "a49991e4d228f087c9980a00702e85af",
+                "parameters": [
+                    {
+                        "name": "inventory",
+                        "in": "path",
+                        "description": "Inventory Id / Unique Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string|integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "book": {
+                                            "properties": {
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Burning Heat"
+                                                },
+                                                "author": {
+                                                    "type": "string",
+                                                    "example": "Akiyoshi Rikako"
+                                                },
+                                                "publisher": {
+                                                    "type": "string",
+                                                    "example": "Elexmedia"
+                                                },
+                                                "year_released": {
+                                                    "type": "string",
+                                                    "example": "2021"
+                                                },
+                                                "genre": {
+                                                    "type": "string",
+                                                    "example": "thriller"
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": "120000"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "is_available": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Inventory"
+                ],
+                "summary": "Inventory Delete",
+                "operationId": "c75e576932ab2e6f129cdcad8d7d14ac",
+                "parameters": [
+                    {
+                        "name": "inventory",
+                        "in": "path",
+                        "description": "Inventory Id / Unique Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string|integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Inventory"
+                ],
+                "summary": "Inventory Update",
+                "operationId": "ee74cfefd0505bc855e0c97123df6818",
+                "parameters": [
+                    {
+                        "name": "inventory",
+                        "in": "path",
+                        "description": "Inventory Id / Unique Key",
+                        "required": true,
+                        "schema": {
+                            "type": "string|integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "book_id": {
+                                                "type": "integer"
+                                            },
+                                            "stock": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "book_id": 1,
+                                    "stock": 10
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "book": {
+                                            "properties": {
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Burning Heat"
+                                                },
+                                                "author": {
+                                                    "type": "string",
+                                                    "example": "Akiyoshi Rikako"
+                                                },
+                                                "publisher": {
+                                                    "type": "string",
+                                                    "example": "Elexmedia"
+                                                },
+                                                "year_released": {
+                                                    "type": "string",
+                                                    "example": "2021"
+                                                },
+                                                "genre": {
+                                                    "type": "string",
+                                                    "example": "thriller"
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": "120000"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "Stock": {
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "is_available": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/cart/order": {
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Order Add",
+                "operationId": "0be414b98aa0894d9061ed7cbc073901",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "book_id": {
+                                                "type": "integer"
+                                            },
+                                            "qty": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "book_id": 1,
+                                    "qty": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "order_id": {
+                                                    "type": "string"
+                                                },
+                                                "customer": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "test"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "test@gmail.com"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "Customer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "item": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "book_id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "qty": {
+                                                                "type": "integer",
+                                                                "example": 2
+                                                            },
+                                                            "sub_total": {
+                                                                "type": "boolean",
+                                                                "example": 240000
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 240000
+                                                },
+                                                "payment_method": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "address": {
+                                                    "type": "text",
+                                                    "example": null
+                                                },
+                                                "delivery_service": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "is_paid": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "payment_proof": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "Pending"
+                                                },
+                                                "is_completed": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/order/payment/{order}": {
+            "patch": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Order Payment",
+                "operationId": "1d41ec5f31fff7e957a964838d167770",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "path",
+                        "description": "Order Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "payment_method": {
+                                                "type": "string"
+                                            },
+                                            "address": {
+                                                "type": "string"
+                                            },
+                                            "delivery_service": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "payment_method": "transfer - BCA",
+                                    "address": "Jl Bandung Jawa Barat",
+                                    "delivery_service": "JNT"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "order_id": {
+                                                    "type": "string"
+                                                },
+                                                "customer": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "test"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "test@gmail.com"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "Customer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "item": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "book_id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "qty": {
+                                                                "type": "integer",
+                                                                "example": 2
+                                                            },
+                                                            "sub_total": {
+                                                                "type": "boolean",
+                                                                "example": 240000
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 240000
+                                                },
+                                                "payment_method": {
+                                                    "type": "string",
+                                                    "example": "transfer - BCA"
+                                                },
+                                                "address": {
+                                                    "type": "text",
+                                                    "example": "Jl Bandung Jawa Barat"
+                                                },
+                                                "delivery_service": {
+                                                    "type": "string",
+                                                    "example": "JNT"
+                                                },
+                                                "is_paid": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "payment_proof": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "Waiting"
+                                                },
+                                                "is_completed": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/order/payment-verify/{order}": {
+            "patch": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Order Payment Verify",
+                "operationId": "fd7565eab98790156e7261f8cb140906",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "path",
+                        "description": "Order Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "payment_proof": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "payment_proof": "bukti-tranfer.jpg"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "order_id": {
+                                                    "type": "string"
+                                                },
+                                                "customer": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "test"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "test@gmail.com"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "Customer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "item": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "book_id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "qty": {
+                                                                "type": "integer",
+                                                                "example": 2
+                                                            },
+                                                            "sub_total": {
+                                                                "type": "boolean",
+                                                                "example": 240000
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 240000
+                                                },
+                                                "payment_method": {
+                                                    "type": "string",
+                                                    "example": "transfer - BCA"
+                                                },
+                                                "address": {
+                                                    "type": "text",
+                                                    "example": "Jl Bandung Jawa Barat"
+                                                },
+                                                "delivery_service": {
+                                                    "type": "string",
+                                                    "example": "JNT"
+                                                },
+                                                "is_paid": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                },
+                                                "payment_proof": {
+                                                    "type": "string",
+                                                    "example": "bukti-tranfer.jpg"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "Waiting"
+                                                },
+                                                "is_completed": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/order/completed/{order}": {
+            "patch": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Order Completed",
+                "operationId": "70598bdce8525a858ae606d5d36fcc1c",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "path",
+                        "description": "Order Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "order_id": {
+                                                    "type": "string"
+                                                },
+                                                "customer": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "test"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "test@gmail.com"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "Customer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "item": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "book_id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "qty": {
+                                                                "type": "integer",
+                                                                "example": 2
+                                                            },
+                                                            "sub_total": {
+                                                                "type": "boolean",
+                                                                "example": 240000
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 240000
+                                                },
+                                                "payment_method": {
+                                                    "type": "string",
+                                                    "example": "transfer - BCA"
+                                                },
+                                                "address": {
+                                                    "type": "text",
+                                                    "example": "Jl Bandung Jawa Barat"
+                                                },
+                                                "delivery_service": {
+                                                    "type": "string",
+                                                    "example": "JNT"
+                                                },
+                                                "is_paid": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                },
+                                                "payment_proof": {
+                                                    "type": "string",
+                                                    "example": "bukti-tranfer.jpg"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "Selesai"
+                                                },
+                                                "is_completed": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/cart": {
+            "get": {
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Cart List",
+                "operationId": "22b703ec0cc7aca8223c2604ba590179",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "customer": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "number",
+                                                                "example": 1
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "test"
+                                                            },
+                                                            "email": {
+                                                                "type": "string",
+                                                                "example": "test@gmail.com"
+                                                            },
+                                                            "role": {
+                                                                "type": "string",
+                                                                "example": "Admin"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "book": {
+                                                        "properties": {
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Burning Heat"
+                                                            },
+                                                            "author": {
+                                                                "type": "string",
+                                                                "example": "Akiyoshi Rikako"
+                                                            },
+                                                            "publisher": {
+                                                                "type": "string",
+                                                                "example": "Elexmedia"
+                                                            },
+                                                            "year_released": {
+                                                                "type": "string",
+                                                                "example": "2021"
+                                                            },
+                                                            "genre": {
+                                                                "type": "string",
+                                                                "example": "thriller"
+                                                            },
+                                                            "price": {
+                                                                "type": "integer",
+                                                                "example": "120000"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "item": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "total": {
+                                                        "type": "integer",
+                                                        "example": 120000
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Cart Store",
+                "operationId": "8ff5f58905eb254727c8bb30db32f873",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "book_id": {
+                                                "type": "integer"
+                                            },
+                                            "qty": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "book_id": 1,
+                                    "qty": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "customer": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "test"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "test@gmail.com"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "Admin"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "book": {
+                                                    "properties": {
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Burning Heat"
+                                                        },
+                                                        "author": {
+                                                            "type": "string",
+                                                            "example": "Akiyoshi Rikako"
+                                                        },
+                                                        "publisher": {
+                                                            "type": "string",
+                                                            "example": "Elexmedia"
+                                                        },
+                                                        "year_released": {
+                                                            "type": "string",
+                                                            "example": "2021"
+                                                        },
+                                                        "genre": {
+                                                            "type": "string",
+                                                            "example": "thriller"
+                                                        },
+                                                        "price": {
+                                                            "type": "integer",
+                                                            "example": "120000"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "item": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 120000
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/cart/{cart}": {
+            "delete": {
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Cart Delete",
+                "operationId": "e47361c3e9e563e1dbc9355b0978b061",
+                "parameters": [
+                    {
+                        "name": "cart",
+                        "in": "path",
+                        "description": "Cart Id",
+                        "required": true,
+                        "schema": {
+                            "type": "string|integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Cart Update",
+                "operationId": "c0030ab3fbedacc057ae18b534ecddeb",
+                "parameters": [
+                    {
+                        "name": "cart",
+                        "in": "path",
+                        "description": "cart Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "book_id": {
+                                                "type": "integer"
+                                            },
+                                            "qty": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "book_id": 1,
+                                    "qty": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "customer": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "number",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "test"
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "example": "test@gmail.com"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "Admin"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "book": {
+                                                    "properties": {
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Burning Heat"
+                                                        },
+                                                        "author": {
+                                                            "type": "string",
+                                                            "example": "Akiyoshi Rikako"
+                                                        },
+                                                        "publisher": {
+                                                            "type": "string",
+                                                            "example": "Elexmedia"
+                                                        },
+                                                        "year_released": {
+                                                            "type": "string",
+                                                            "example": "2021"
+                                                        },
+                                                        "genre": {
+                                                            "type": "string",
+                                                            "example": "thriller"
+                                                        },
+                                                        "price": {
+                                                            "type": "integer",
+                                                            "example": "120000"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "item": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 120000
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register",
+                "operationId": "482fd8cbb98dc3225fa0e7ac40c1abe6",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "test",
+                                    "email": "test@gmail.com",
+                                    "password": "12345"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "test"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "test@gmail.com"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "customer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The email has already been taken."
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "operationId": "afd167661891a2c4c1b49a04643b9223",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "test@example.com",
+                                    "password": "12345"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "test"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "test@gmail.com"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "customer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "randomtokenasfhajskfhajf398rureuuhfdshk"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "message": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "email or password wrong"
+                                                    },
+                                                    "collectionFormat": "multi"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "operationId": "9872a1ded930c0faa99c7f184b4cd654",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {}
+                                },
+                                "type": "object",
+                                "example": []
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Logout Success!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "example": []
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/users/list": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Users List",
+                "operationId": "d903ea37d971989c106679a2e770c3ab",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "test"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "test@gmail.com"
+                                                    },
+                                                    "role": {
+                                                        "type": "string",
+                                                        "example": "admin"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/profile": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "User Profile",
+                "operationId": "85d739158552477973430d9c6aaf191e",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "test"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "test@gmail.com"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "customer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        },
+        "/api/users/update/{user}": {
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Login",
+                "operationId": "cf08caddc75386659d215894ccb19476",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "role": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "test",
+                                    "email": "test@gmail.com",
+                                    "role": "Admin"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "test"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "test@gmail.com"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "Admin"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "token": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "token": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
