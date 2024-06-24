@@ -350,6 +350,9 @@ class OrderProcessController extends Controller
                     $inventory->update([
                         'stock' => $inventory->stock - $value->qty,
                     ]);
+
+                    $cart = ShoppingCart::where('customer_id', $order->user_id)->where('book_id', $value->book_id)->first();
+                    $cart->delete();
                 }
 
                 # code...
